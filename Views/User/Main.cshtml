@@ -1,0 +1,10 @@
+@{
+    ViewData["Title"] = "Main Page";
+}
+
+<h1>Welcome, @ViewBag.Username!</h1>
+<p>Welcome to the main page, @ViewBag.Username. This is where your personalized content would go.</p>
+
+<form asp-area="" asp-controller="Auth" asp-action="Logout" method="post">
+    <button type="submit" class="btn btn-primary mt-5">Logout</button>
+</form>

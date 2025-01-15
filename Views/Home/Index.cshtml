@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Seja bem-vindo</h1>
+    <p>
+        Aqui você pode fazer login ou registrar-se para utilizar o seu novo site.
+        Se você já possui uma conta, clique em "Login" para entrar.
+        Caso contrário, clique em "Registrar" para se cadastrar.
+        <br/>
+        <a asp-action="Privacy">Política de Privacidade</a> | <a asp-action="Terms">Termos de Uso</a>
+        <br/>
+        <small>Este site foi criado para demonstrar a autenticação de usuários com ASP.NET Core MVC.</small>
+        <br/>
+        <small>Desenvolvido por <a href="https://github.com/gabriel-barros">Gabriel Barros</a></small>
+        <br/>
+    </p>
+    
+    <div class="container mt-3">
+        <div class="text-center d-flex justify-content-between">
+            <a asp-area="" asp-controller="Auth" asp-action="Login" class="btn btn-primary">Login</a>
+            <a asp-area="" asp-controller="Auth" asp-action="Register" class="btn btn-primary">Registrar</a>
+        </div>
+    </div>
+</div>
