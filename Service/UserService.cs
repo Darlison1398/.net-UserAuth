@@ -60,7 +60,10 @@ public class UserService
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Email),
             //new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(ClaimTypes.Name, user.Username)
+            new Claim(ClaimTypes.Name, user.Username),
+            //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim("userId", user.Id.ToString())
+
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -87,5 +90,14 @@ public class UserService
         }
         return null; 
     }
+
+    public async Task<int?> GetUserIdByEmail(string email)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+        
+        // Retorna o ID do usuário ou null caso o usuário não seja encontrado
+        return user?.Id;
+    }
+
 
 }

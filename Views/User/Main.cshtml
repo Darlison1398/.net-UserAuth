@@ -1,10 +1,46 @@
+@model IEnumerable<AuthUser.Models.Product>
 @{
     ViewData["Title"] = "Main Page";
 }
 
 <h1>Welcome, @ViewBag.Username!</h1>
-<p>Welcome to the main page, @ViewBag.Username. This is where your personalized content would go.</p>
+<p>Create your product listing</p>
 
 <form asp-area="" asp-controller="Auth" asp-action="Logout" method="post">
     <button type="submit" class="btn btn-primary mt-5">Logout</button>
 </form>
+
+<h2>My Products</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p>No products found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Description</td>
+                    <td>@product.Quantity</td>
+                    <td>
+                        <div class="d-flex" style="gap: 1em;">
+                            <a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="btn btn-primary">Editar</a>
+                            <a href="@Url.Action("Delete", "Product", new { id = product.Id })" class="btn btn-danger">Deletar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a asp-controller="Product" asp-action="Create" class="btn btn-primary">Add Product</a>

@@ -54,12 +54,12 @@ namespace AuthUser.Controllers
                     ModelState.AddModelError("", "Invalid email or password.");
                     return View();
                 }
-
                 var username = await _userService.GetUsernameByEmail(email);
-                
+                var userId = await _userService.GetUserIdByEmail(email); 
                 HttpContext.Session.SetString("Token", token);
                 HttpContext.Session.SetString("UserEmail", email);
                 HttpContext.Session.SetString("Username", username);
+                HttpContext.Session.SetString("UserId", userId.ToString());
 
                 return RedirectToAction("Main", "User");
             }
@@ -69,7 +69,6 @@ namespace AuthUser.Controllers
                 return View();
             }
         }
-
         [Authorize]
         [HttpGet("profile")]
         public async Task<IActionResult> GetProfile()
@@ -84,12 +83,9 @@ namespace AuthUser.Controllers
             // Limpa os dados da sessão
             HttpContext.Session.Remove("Token");
             HttpContext.Session.Remove("UserEmail");
-
             return RedirectToAction("Login"); // Redireciona para a página de login
         }
-
     }
-
 }
 
 

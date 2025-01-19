@@ -5,6 +5,7 @@ using System.Reflection.Emit;
 public class AppDbContext : DbContext
 {
     public DbSet<User> Users { get; set; }
+    public DbSet<Product> Products { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -17,5 +18,12 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<User>()
             .Property(u => u.Email)
             .IsRequired();
+
+        // Configuração da relação entre User e Product
+        modelBuilder.Entity<Product>()
+            .HasOne(p => p.User)
+            .WithMany(u => u.Products)
+            .HasForeignKey(p => p.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

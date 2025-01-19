@@ -7,11 +7,14 @@ namespace AuthUser.Models
         public string Email { get; set; }
         public string PasswordHash  { get; set; }
 
+        public ICollection<Product> Products { get; set; }
+
         public User(string username, string email, string passwordHash)
         {
             Username = username;
             Email = email;
             PasswordHash = passwordHash;
+            Products = new List<Product>();
         }
     }
 
