@@ -29,7 +29,7 @@ namespace AuthUser.Controllers
             // Verifica se o username foi encontrado no token
             if (string.IsNullOrEmpty(username))
             {
-                return Unauthorized("Usuário não autenticado ou token inválido.");
+                return Unauthorized("Unauthenticated user or invalid token.");
             }
 
             // Passa o username para a view

@@ -44,8 +44,12 @@ body {
   /*background-color: rgb(115, 232, 193);*/
   background-color: #258cfb;
 }
-h3{
+h1{
   color: #fff;
+}
+
+h3{
+  color: #0660c0;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
