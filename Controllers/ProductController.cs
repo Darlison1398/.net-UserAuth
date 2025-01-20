@@ -42,7 +42,8 @@ namespace AuthUser.Controllers
 
                 if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId))
                 {
-                    return Unauthorized("O ID do usuário no token é inválido."); // Retorna erro caso o ID seja inválido
+                    TempData["ErrorMessage"] = "Error: Invalid user ID.";
+                    return Unauthorized("The user ID in the token is invalid."); // Retorna erro caso o ID seja inválido
                 }
 
                 var product = new Product
@@ -54,8 +55,11 @@ namespace AuthUser.Controllers
 
                 _context.Products.Add(product);
                 _context.SaveChanges();
+                TempData["SuccessMessage"] = "Product created successfully!";
                 return RedirectToAction("Main", "User"); // Redireciona para a página principal
             }
+
+            TempData["ErrorMessage"] = "Error: Could not create the product.";
             return View();
         }
 
@@ -75,7 +79,7 @@ namespace AuthUser.Controllers
             var userIdClaim = User.FindFirstValue("userId");
             if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId))
             {
-                return Unauthorized("Você não pode editar esse produto."); // Retorna erro caso o ID seja inválido
+                return Unauthorized("You can't edit this product."); // Retorna erro caso o ID seja inválido
             }
             return View(product);
         }
@@ -92,6 +96,7 @@ namespace AuthUser.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
+                TempData["ErrorMessage"] = "Error: Product not found.";
                 return NotFound();
             }
 
@@ -99,7 +104,8 @@ namespace AuthUser.Controllers
             var userIdClaim = User.FindFirstValue("userId");
             if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId) || product.UserId != userId)
             {
-                return Unauthorized("Você não tem permissão para editar esse produto.");
+                TempData["ErrorMessage"] = "Error: You cannot edit this product.";
+                return Unauthorized("You don't have permission to edit that product.");
             }
 
             // Atualiza os valores do produto
@@ -110,6 +116,7 @@ namespace AuthUser.Controllers
             _context.Update(product);
             await _context.SaveChangesAsync();
 
+            TempData["SuccessMessage"] = "Product updated successfully!";
             return RedirectToAction("Main", "User");
         }
 
@@ -137,6 +144,7 @@ namespace AuthUser.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
+                TempData["ErrorMessage"] = "Error: Product not found.";
                 return NotFound();
             }
 
@@ -144,13 +152,15 @@ namespace AuthUser.Controllers
             var userIdClaim = User.FindFirstValue("userId");
             if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId) || product.UserId != userId)
             {
-                return Unauthorized("Você não tem permissão para deletar esse produto.");
+                TempData["ErrorMessage"] = "Error: You cannot delete this product.";
+                return Unauthorized("You are not allowed to delete this product.");
             }
 
             // Remove o produto do banco de dados
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
-
+            
+            TempData["SuccessMessage"] = "Product deleted successfully!";
             return RedirectToAction("Main", "User");
         }
 
