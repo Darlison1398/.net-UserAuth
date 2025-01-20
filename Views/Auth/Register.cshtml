@@ -1,8 +1,10 @@
 @{
     ViewData["Title"] = "Register";
 }
+@await Html.PartialAsync("_BackButton")
 
 <h2>Register user</h2>
+
 <form asp-action="Register" method="post" id="registerForm">
     <div class="form-group">
         <label for="username">Username</label>
@@ -16,7 +18,7 @@
         <label for="password">Password</label>
         <input type="password" name="password" id="password" class="form-control" required />
     </div>
-    <button type="submit" class="btn btn-primary mt-2">Register</button>
+    <button type="submit" class="btn btn-primary mt-3 w-100">Register</button>
 </form>
 
 <div class="container mt-2">

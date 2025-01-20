@@ -1,0 +1,24 @@
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="success-alert" class="alert alert-success text-center">
+        <strong>@TempData["SuccessMessage"]</strong>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="error-alert" class="alert alert-danger text-center">
+        <strong>@TempData["ErrorMessage"]</strong>
+    </div>
+}
+
+<script>
+    // Esconde as mensagens após 5 segundos
+    setTimeout(function () {
+        var successAlert = document.getElementById("success-alert");
+        var errorAlert = document.getElementById("error-alert");
+
+        if (successAlert) successAlert.style.display = "none";
+        if (errorAlert) errorAlert.style.display = "none";
+    }, 5000); // 5000 ms = 5 segundos
+</script>

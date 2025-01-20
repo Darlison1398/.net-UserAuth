@@ -38,6 +38,7 @@ namespace AuthUser.Controllers
             }
             catch
             {
+                TempData["ErrorMessage"] = "An error occurred while registering.";
                 ModelState.AddModelError("", "An error occurred while registering.");
                 return View();
             }
@@ -51,6 +52,7 @@ namespace AuthUser.Controllers
                 var token = await _userService.LoginUser(email, password);
                 if (token == null)
                 {
+                    TempData["ErrorMessage"] = "Erro: Invalid email or password.";
                     ModelState.AddModelError("", "Invalid email or password.");
                     return View();
                 }
@@ -65,6 +67,7 @@ namespace AuthUser.Controllers
             }
             catch
             {
+                TempData["ErrorMessage"] = "Erro: Invalid email or password.";
                 ModelState.AddModelError("", "Invalid email or password.");
                 return View();
             }

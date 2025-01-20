@@ -2,6 +2,25 @@ html {
   font-size: 14px;
 }
 
+p{
+  font-size: 12pt;
+}
+
+.box-btn-start{
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.form-group{
+  margin-bottom: .5rem;
+}
+
+label{
+  font-size: large;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -21,6 +40,14 @@ body {
   margin-bottom: 60px;
 }
 
+.header, .footer{
+  /*background-color: rgb(115, 232, 193);*/
+  background-color: #258cfb;
+}
+h3{
+  color: #fff;
+}
+
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;
@@ -28,4 +55,15 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+
+@media(max-width:700px) {
+  span{
+    display: none;
+  }
+
+  p{
+    font-size: 12pt;
+  }
 }

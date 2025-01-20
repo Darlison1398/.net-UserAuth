@@ -3,14 +3,25 @@
     ViewData["Title"] = "Main Page";
 }
 
-<h1>Welcome, @ViewBag.Username!</h1>
-<p>Create your product listing</p>
+<div class="d-flex justify-content-end">
+    <form asp-area="" asp-controller="Auth" asp-action="Logout" method="post">
+        <button type="submit" class="btn btn-secondary">
+            <i class="fa-solid fa-arrow-left"></i> Logout
+        </button>
+    </form>
+</div>
 
-<form asp-area="" asp-controller="Auth" asp-action="Logout" method="post">
-    <button type="submit" class="btn btn-primary mt-5">Logout</button>
-</form>
+<!--h3 class="mt-3">Welcome, @ViewBag.Username!</h3-->
+<h5>Create your product listing</h5>
 
-<h2>My Products</h2>
+@await Html.PartialAsync("_Messages")
+
+<div class="d-flex justify-content-between mt-5">
+    <h4>My Products</h4>
+    <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Add Product
+    </a>
+</div>
 
 @if (Model == null || !Model.Any())
 {
@@ -34,8 +45,12 @@ else
                     <td>@product.Quantity</td>
                     <td>
                         <div class="d-flex" style="gap: 1em;">
-                            <a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="btn btn-primary">Editar</a>
-                            <a href="@Url.Action("Delete", "Product", new { id = product.Id })" class="btn btn-danger">Deletar</a>
+                            <a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="btn btn-primary">
+                                <i class="fa-solid fa-pen"></i> <span>Edit</span>
+                            </a>
+                            <a href="@Url.Action("Delete", "Product", new { id = product.Id })" class="btn btn-danger">
+                                <i class="fa-solid fa-trash"></i> <span>Delete</span>
+                            </a>
                         </div>
                     </td>
                 </tr>
@@ -43,4 +58,3 @@ else
         </tbody>
     </table>
 }
-<a asp-controller="Product" asp-action="Create" class="btn btn-primary">Add Product</a>

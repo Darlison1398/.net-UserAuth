@@ -1,16 +1,18 @@
 @model AuthUser.Models.Product
 
-<h2>Add Product</h2>
+@await Html.PartialAsync("_UserBack")
+
+<h2 class="mt-3">Add Product</h2>
 
 <form asp-action="Create" method="post">
     @Html.AntiForgeryToken()
     <div class="form-group">
         <label for="Description">Description</label>
-        <input type="text" class="form-control" asp-for="Description" />
+        <input type="text" class="form-control" asp-for="Description" required />
     </div>
     <div class="form-group">
         <label for="Quantity">Quantity</label>
-        <input type="number" class="form-control" asp-for="Quantity" />
+        <input type="number" class="form-control" asp-for="Quantity" required/>
     </div>
     <button type="submit" class="btn btn-primary mt-3 w-100">Save</button>
 </form>

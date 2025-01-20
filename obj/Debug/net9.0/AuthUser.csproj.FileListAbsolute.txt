@@ -17,7 +17,6 @@ C:\C# .Net\AuthUser\obj\Debug\net9.0\AuthUser.RazorAssemblyInfo.cs
 C:\C# .Net\AuthUser\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\C# .Net\AuthUser\obj\Debug\net9.0\scopedcss\bundle\AuthUser.styles.css
 C:\C# .Net\AuthUser\obj\Debug\net9.0\scopedcss\projectbundle\AuthUser.bundle.scp.css
-C:\C# .Net\AuthUser\obj\Debug\net9.0\compressed\2h2n2bulec-b9sayid5wm.gz
 C:\C# .Net\AuthUser\obj\Debug\net9.0\compressed\ocz2kx7wil-61n19gt1b8.gz
 C:\C# .Net\AuthUser\obj\Debug\net9.0\compressed\35vqubebm4-xtxxf3hu2r.gz
 C:\C# .Net\AuthUser\obj\Debug\net9.0\compressed\xbc4gsqlsf-bqjiyaj88i.gz
@@ -219,3 +218,4 @@ C:\C# .Net\AuthUser\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\C# .Net\AuthUser\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\C# .Net\AuthUser\obj\Debug\net9.0\AuthUser.csproj.Up2Date
 C:\C# .Net\AuthUser\obj\Debug\net9.0\AuthUser.sourcelink.json
+C:\C# .Net\AuthUser\obj\Debug\net9.0\compressed\2h2n2bulec-lhug9d015z.gz

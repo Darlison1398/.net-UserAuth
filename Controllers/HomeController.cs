@@ -15,11 +15,11 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
+        if (User.Identity.IsAuthenticated) // Verifica se o usuário está logado
+        {
+            var userName = HttpContext.Session.GetString("Username");
+            ViewData["UserName"] = userName ?? "Usuário"; // Armazena no ViewData (valor padrão "Usuário")
+        }
         return View();
     }
 
