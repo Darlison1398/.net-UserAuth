@@ -15,9 +15,16 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<User>()
             .HasKey(u => u.Id);
+
         modelBuilder.Entity<User>()
             .Property(u => u.Email)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(255)
+            .HasColumnType("NVARCHAR(255)");
+
+        modelBuilder.Entity<User>()
+        .HasIndex(u => u.Email)  // Criação do índice único
+        .IsUnique();  
 
         // Configuração da relação entre User e Product
         modelBuilder.Entity<Product>()

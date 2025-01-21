@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace AuthUser.Models
 {
     public class User 
     {
         public int Id { get; set; }
         public string Username { get; set; }
+        
+        [MaxLength(255)]
         public string Email { get; set; }
         public string PasswordHash  { get; set; }
 
