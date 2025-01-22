@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using AuthUser.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 public class UserService
 {
@@ -61,7 +62,7 @@ public class UserService
             new Claim(JwtRegisteredClaimNames.Sub, user.Email),
             //new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(ClaimTypes.Name, user.Username),
-            //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             new Claim("userId", user.Id.ToString())
 
         };
@@ -99,5 +100,27 @@ public class UserService
         return user?.Id;
     }
 
+    public async Task<User> GetUserByIdAsync(int userId)
+    {
+        // Supondo que você tenha um DbContext configurado para acessar o banco
+        return await _context.Users.FindAsync(userId);
+    }
+
+    public async Task<User> GetUserByEmailAsync(string email)
+    {
+        //return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+        return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+    }
+
+    public async Task<User> GetUserById(int id)
+    {
+        return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+    }
+
+    public async Task<bool> UpdateUser(User user)
+    {
+        _context.Users.Update(user);
+        return await _context.SaveChangesAsync() > 0;
+    }
 
 }

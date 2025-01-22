@@ -12,18 +12,16 @@
 </head>
 <body>
     <header class="header">
-        <nav class="navbar border-bottom box-shadow mb-3 text-center justify-content-center">
-            <!--div class="container text-center">
-                @if (User.Identity.IsAuthenticated) 
+        <nav class="navbar border-bottom box-shadow mb-3 text-center justify-content-center justify-content-between">
+            <div class="container">
+                <h1>DrList</h1>
+                @if(User.Identity.IsAuthenticated)
                 {
-                    <h3 class="text-center">@ViewData["UserName"] </h3>
+                    <a asp-controller="User" asp-action="Perfil" class="btn btn-primary">
+                        <i class="fa-solid fa-user"></i> Profile
+                    </a>
                 }
-                else 
-                {
-                    <h3 class="text-center">DrList</h3> 
-                }
-            </div-->
-            <h1 class="text-center">DrList</h1>
+            </div>
         </nav>
     </header>
     <div class="container">

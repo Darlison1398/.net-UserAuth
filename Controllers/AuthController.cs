@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using AuthUser.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace AuthUser.Controllers
 {
@@ -72,12 +73,14 @@ namespace AuthUser.Controllers
                 return View();
             }
         }
-        [Authorize]
-        [HttpGet("profile")]
-        public async Task<IActionResult> GetProfile()
+
+
+        [HttpGet("perfil")]
+        public async Task<IActionResult> Perfil()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             return Ok(new { userId });
+
         }
 
         [HttpPost("logout")]
@@ -86,8 +89,9 @@ namespace AuthUser.Controllers
             // Limpa os dados da sessão
             HttpContext.Session.Remove("Token");
             HttpContext.Session.Remove("UserEmail");
-            return RedirectToAction("Login"); // Redireciona para a página de login
+            return RedirectToAction("Index", "Home"); // Redireciona para a página de login
         }
+
     }
 }
 
