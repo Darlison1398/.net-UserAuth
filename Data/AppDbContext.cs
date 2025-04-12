@@ -19,8 +19,7 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<User>()
             .Property(u => u.Email)
             .IsRequired()
-            .HasMaxLength(255)
-            .HasColumnType("NVARCHAR(255)");
+            .HasMaxLength(255);
 
         modelBuilder.Entity<User>()
         .HasIndex(u => u.Email)  // Criação do índice único

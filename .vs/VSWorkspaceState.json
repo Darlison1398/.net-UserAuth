@@ -2,10 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Data",
-    "\\Views",
-    "\\Views\\Auth",
-    "\\Views\\Home"
+    "\\Migrations",
+    "\\Models"
   ],
-  "SelectedNode": "\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\Migrations",
   "PreviewInSolutionExplorer": false
 }
